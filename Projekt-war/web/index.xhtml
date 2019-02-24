@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>FTP doc</title>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="display" value="display"/>
+        <f:viewParam name="adding" value="adding"/>
+    </f:metadata>
+    <h:body >
+        <div align="center">
+        <h:form>
+            #{fileWebBean.getPath()}
+            <h1>FTP</h1>
+            <h:dataTable value="#{fileWebBean.documents}" var="item">
+                <h:column>
+                    <f:facet name="header">id</f:facet>
+                    <h:commandLink value="#{item.id}" action="#{fileWebBean.setId(item.id)}">
+                        <f:param name="display" value="true"/>
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">nazwa pliku</f:facet>
+                        #{item.path}
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+        <h:form rendered="#{display}">
+            <h2>Opis pliku #{fileWebBean.current.path}</h2>
+            #{fileWebBean.current.description}
+            <br/>
+
+            <h:commandButton id="downloadB" value="Pobierz" type="submit" action="#{fileWebBean.downloadFile()}"/>
+            <h:commandButton id="deleteB" value="Usuń" action="/delete.jsp">
+            </h:commandButton>
+        </h:form>
+        <br/>
+        <h:button value="Dodawanie">
+            <f:param name="adding" value="#{not adding}"/>
+        </h:button>
+        <h:form id="form" enctype="multipart/form-data" rendered="#{adding}">
+            <table>
+                <tr>
+
+                    <td>Nazwa pliku </td><td><h:inputText id="name"  binding="#{name}"/></td>
+                </tr>
+                <tr>
+                    <td>Opis pliku </td><td><h:inputTextarea id="description" binding="#{description}"/></td>
+                    </tr>
+                
+                <tr>
+                    <td></td><td><h:inputFile id="file" value="#{fileWebBean.file}">
+                        </h:inputFile></td>
+                </tr>
+            </table>
+            <h:commandButton id="button" value="Załaduj" type="submit" action="#{fileWebBean.addData(name.value,description.value)}"/>
+
+        </h:form>
+</div>
+    </h:body>
+</html>
+

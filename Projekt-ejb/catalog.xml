@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://Ozzik:27830/Projekt-backend/FileWebService" uri="src/conf/xml-resources/web-service-references/FileWebService/wsdl/Ozzik_27830/Projekt-backend/FileWebService.xml"/>
+    <system systemId="http://localhost:27830/Projekt-backend/FileWebService?wsdl" uri="src/conf/xml-resources/web-service-references/FileWebService/wsdl/localhost_27830/Projekt-backend/FileWebService.wsdl"/>
+    <system systemId="http://localhost:27830/Projekt-backend/FileWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/FileWebService/wsdl/localhost_27830/Projekt-backend/FileWebService.xsd_1.xsd"/>
+</catalog>

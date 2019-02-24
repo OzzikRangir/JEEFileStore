@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:ejbjarproject2="http://www.netbeans.org/ns/j2ee-ejbjarproject/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <mkdir dir="${classes.dir}"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${j2ee.platform.wsimport.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-FileWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/FileWebService"/>
+        <property name="wsdl-FileWebService" location="${meta.inf}/xml-resources/web-service-references/FileWebService/wsdl/localhost_27830/Projekt-backend/FileWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/FileWebService" destdir="${build.generated.dir}/jax-wsCache/FileWebService" wsdl="${wsdl-FileWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:27830/Projekt-backend/FileWebService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-FileWebService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/FileWebService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/FileWebService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-FileWebService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/FileWebService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/ozz/webservices"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-FileWebService"/>
+</project>
